@@ -1,3 +1,7 @@
 # CMOR 438 Final Project
 
-This is the start of the final project.
+This project stores a custom-built machine learning package developed for my **CMOR 438 (Data Science and Machine Learning)** final project. The package focuses on the basics of supervised and unsupervised learning.
+
+By implementing a custom package, the core principles of ML become more accessible and understandable than the standard implementation of the functions.
+
+This project includes examples of the core functions being tested on NFL player stats data.
