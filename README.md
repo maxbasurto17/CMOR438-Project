@@ -9,7 +9,6 @@ By implementing a custom package, the core principles of ML become more accessib
 This project includes examples of the core functions being tested on NFL player stats data.
 
 ## Structure
-## Structure
 
 ```text
 .
