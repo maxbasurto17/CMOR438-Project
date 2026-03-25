@@ -36,8 +36,6 @@ This project includes examples of the core functions being tested on NFL player 
 
 ## Capabilities
 
-## Capabilities
-
 
 ## Usages
 ### Examples
