@@ -9,7 +9,26 @@ By implementing a custom package, the core principles of ML become more accessib
 This project includes examples of the core functions being tested on NFL player stats data.
 
 ## Structure
-
+.
+├── .github/
+│   └── workflows/
+│       └── ci-test.yml
+├── .gitignore
+├── pyproject.toml
+├── README.md
+├── src/
+│   └── rice_ml/
+│       ├── __init__.py
+│       ├── measures/
+│       │   └── __init__.py
+│       ├── preprocessing/
+│       │   └── __init__.py
+│       ├── supervised_ml/
+│       │   └── __init__.py
+│       └── unsupervised_ml/
+│           └── __init__.py
+└── tests/
+    └── test_basic.py
 
 ## Capabilities
 
