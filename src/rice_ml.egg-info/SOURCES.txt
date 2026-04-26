@@ -8,8 +8,9 @@ src/rice_ml.egg-info/dependency_links.txt
 src/rice_ml.egg-info/top_level.txt
 src/rice_ml/measures/__init__.py
 src/rice_ml/preprocessing/__init__.py
-src/rice_ml/supervised_ml/__init__.py
-src/rice_ml/supervised_ml/perceptron.py
-src/rice_ml/unsupervised_ml/__init__.py
+src/rice_ml/supervised/__init__.py
+src/rice_ml/supervised/perceptron.py
+src/rice_ml/supervised_ml/linear_regression.py
+src/rice_ml/unsupervised/__init__.py
 tests/test_basic.py
 tests/test_perceptron.py

@@ -7,3 +7,7 @@ name = "rice_ml"
 version = "0.1.0"
 description = "Machine learning project for class."
 readme = "README.md"
+
+dependencies = [
+    "numpy",
+]
