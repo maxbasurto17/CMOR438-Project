@@ -50,9 +50,16 @@ class DecisionTree:
 
     def _build_tree(self, X, y, depth=0):
         """Recursive function to build the tree nodes."""
-        num_samples_per_class = [np.sum(y == i) for i in np.unique(y)]
-        predicted_class = np.argmax(num_samples_per_class)
+        unique_classes = np.unique(y)
+        num_samples_per_class = [np.sum(y == i) for i in unique_classes]
+        
+        predicted_class = unique_classes[np.argmax(num_samples_per_class)]
+        
         node = {"class": predicted_class}
+
+        # Check if node is pure (all samples have the same label)
+        if len(unique_classes) == 1:
+            return node
 
         if depth < self.max_depth:
             idx, thr = self._best_split(X, y)
