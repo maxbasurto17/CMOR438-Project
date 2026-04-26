@@ -4,6 +4,7 @@ Version: 0.1.0
 Summary: Machine learning project for class.
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: numpy
 Dynamic: license-file
 
 # CMOR 438 Final Project
