@@ -1,5 +1,5 @@
 import numpy as np
-import rice_ml.measures.validation
+from rice_ml.measures.validation import *
 
 def test_mean_squared_error():
     """
