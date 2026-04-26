@@ -14,4 +14,5 @@ src/rice_ml/supervised/linear_regression.py
 src/rice_ml/supervised/perceptron.py
 src/rice_ml/unsupervised/__init__.py
 tests/test_basic.py
+tests/test_linear_regression.py
 tests/test_perceptron.py

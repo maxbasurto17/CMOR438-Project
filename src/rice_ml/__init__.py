@@ -1,1 +1,3 @@
 from .supervised.perceptron import Perceptron
+from .supervised.linear_regression import linear_regression_gradient_descent, predict_linear_regression
+from .supervised.logistic_regression import LogisticRegression
