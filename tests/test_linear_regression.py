@@ -1,6 +1,6 @@
 import numpy as np
 
-from rice_ml import linear_regression_gradient_descent, predict_linear_regression
+from rice_ml.supervised_ml.linear_regression import linear_regression_gradient_descent, predict_linear_regression
 
 def generate_dummy_data():
     """
