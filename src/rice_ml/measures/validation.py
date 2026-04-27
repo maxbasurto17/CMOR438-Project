@@ -189,3 +189,74 @@ def f1_score(y_true, y_pred):
         return 0.0
         
     return 2 * (precision * recall) / (precision + recall)
+
+def sigmoid(z):
+    """
+    Computes the sigmoid activation function.
+    
+    Parameters
+    ----------
+    z : numpy.ndarray
+        The pre-activation linear combination vector.
+        
+    Returns
+    -------
+    numpy.ndarray
+        The post-activation values.
+    """
+    return 1.0 / (1.0 + np.exp(-z))
+
+def d_sigmoid(z):
+    """
+    Computes the derivative of the sigmoid activation function.
+    
+    Parameters
+    ----------
+    z : numpy.ndarray
+        The pre-activation linear combination vector.
+        
+    Returns
+    -------
+    numpy.ndarray
+        The derivative of the sigmoid function evaluated at z.
+    """
+    return sigmoid(z) * (1.0 - sigmoid(z))
+
+def calculate_total_mse(W, B, X, y):
+    """
+    Calculates the Mean Squared Error over an entire dataset.
+    Used as a cost function for training the Multi-Layer Perceptron.
+
+    Parameters
+    ----------
+    W : list of numpy.ndarray
+        The list of weight matrices.
+    B : list of numpy.ndarray
+        The list of bias vectors.
+    X : list of numpy.ndarray
+        The list of input feature column vectors.
+    y : list of numpy.ndarray
+        The list of one-hot encoded target vectors.
+        
+    Returns
+    -------
+    float
+        The average mean squared error across all samples.
+    """
+    cost = 0.0
+    m = len(X)
+    for xi, yi in zip(X, y):
+        # Forward pass to get predictions
+        Z = [[0.0]]
+        A = [xi]
+        L = len(W) - 1
+        for i in range(1, L + 1):
+            z = W[i] @ A[i-1] + B[i]
+            Z.append(z)
+            a = sigmoid(z)
+            A.append(a)
+        
+        # Using the mean_squared_error function
+        cost += mean_squared_error(yi, A[-1])
+        
+    return cost / m if m > 0 else 0.0
