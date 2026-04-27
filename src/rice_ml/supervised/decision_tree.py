@@ -7,20 +7,36 @@ class DecisionTree:
         
         Parameters
         ----------
-        max_depth : int
+        max_depth : int, default=10
             The maximum depth of the tree to prevent overfitting.
         """
         self.max_depth = max_depth
         self.tree = None
 
     def _gini(self, y):
-        """Calculate Gini Impurity for a list of labels."""
+        """Computes the Gini Impurity of a label set."""
         m = len(y)
         if m == 0: return 0
         return 1.0 - sum((np.sum(y == c) / m) ** 2 for c in np.unique(y))
 
     def _best_split(self, X, y):
-        """Find the best feature and threshold to split the data."""
+        """
+        Iterates over features and thresholds to find the best Gini-based split.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input features.
+        y : ndarray of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        best_idx : int or None
+            Feature index of the optimal split.
+        best_thr : float or None
+            Threshold value for the optimal split.
+        """
         m, n = X.shape
         if m <= 1: return None, None
         
@@ -37,7 +53,6 @@ class DecisionTree:
                 if len(y_left) == 0 or len(y_right) == 0:
                     continue
                 
-                # Weighted average of Gini Impurity
                 gini = (len(y_left) * self._gini(y_left) + 
                         len(y_right) * self._gini(y_right)) / m
                 
@@ -49,15 +64,15 @@ class DecisionTree:
         return best_idx, best_thr
 
     def _build_tree(self, X, y, depth=0):
-        """Recursive function to build the tree nodes."""
+        """
+        Recursively builds the decision tree nodes until depth or purity is reached.
+        """
         unique_classes = np.unique(y)
         num_samples_per_class = [np.sum(y == i) for i in unique_classes]
-        
         predicted_class = unique_classes[np.argmax(num_samples_per_class)]
         
         node = {"class": predicted_class}
 
-        # Check if node is pure (all samples have the same label)
         if len(unique_classes) == 1:
             return node
 
@@ -72,12 +87,25 @@ class DecisionTree:
         return node
 
     def train(self, X, y):
-        """Builds the decision tree from the training data."""
+        """
+        Fits the Decision Tree to the classification data.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training input features.
+        y : array-like of shape (n_samples,)
+            Target class labels.
+
+        Returns
+        -------
+        self : object
+        """
         self.tree = self._build_tree(X, y)
         return self
 
     def _predict_one(self, inputs, node):
-        """Traverse the tree for a single input sample."""
+        """Traverses the internal dictionary to find the leaf class for one sample."""
         if "feature_index" not in node:
             return node["class"]
         if inputs[node["feature_index"]] <= node["threshold"]:
@@ -86,5 +114,17 @@ class DecisionTree:
             return self._predict_one(inputs, node["right"])
 
     def predict(self, X):
-        """Predict classes for a set of samples."""
+        """
+        Predicts class labels for the provided samples.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+-------
+        predictions : ndarray of shape (n_samples,)
+            The predicted class labels.
+        """
         return np.array([self._predict_one(inputs, self.tree) for inputs in X])
