@@ -13,3 +13,4 @@ def euclidean_distance(point1, point2):
     """
     # Using numpy's norm for efficient distance calculation
     return np.linalg.norm(point1 - point2)
+

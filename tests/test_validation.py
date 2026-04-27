@@ -143,3 +143,61 @@ def test_zero_division_handling():
     # Therefore, F1 denominator (Precision + Recall) will be 0.
     f1 = f1_score(y_true, y_pred)
     assert f1 == 0.0
+
+def test_sigmoid():
+    """
+    Tests the sigmoid activation function with known inputs.
+    
+    Raises
+    ------
+    AssertionError
+        If the output does not match the expected mathematical results.
+    """
+    # Test values: 0, a large positive number, and a large negative number
+    z = np.array([0.0, 100.0, -100.0])
+    expected = np.array([0.5, 1.0, 0.0])
+    
+    result = sigmoid(z)
+    
+    # Use allclose to handle floating point inaccuracies
+    np.testing.assert_allclose(result, expected, atol=1e-7)
+
+def test_d_sigmoid():
+    """
+    Tests the derivative of the sigmoid function.
+    
+    Raises
+    ------
+    AssertionError
+        If the derivative calculation is incorrect.
+    """
+    z = np.array([0.0])
+    # The derivative of sigmoid at z=0 is 0.5 * (1 - 0.5) = 0.25
+    expected = np.array([0.25])
+    
+    result = d_sigmoid(z)
+    
+    np.testing.assert_allclose(result, expected, atol=1e-7)
+
+def test_calculate_total_mse():
+    """
+    Tests the calculate_total_mse function using a dummy network and dataset.
+    
+    Raises
+    ------
+    AssertionError
+        If the MSE calculation over the dataset fails or returns an invalid type.
+    """
+    # Create a simple 2-layer dummy setup
+    W = [[0.0], np.array([[0.5, 0.5]])] # 1 hidden layer, 1 node, 2 inputs
+    B = [[0.0], np.array([[0.0]])]
+    
+    # 1 sample: 2 features
+    X = [np.array([[1.0], [1.0]])] 
+    y = [np.array([[1.0]])]
+    
+    result = calculate_total_mse(W, B, X, y)
+    
+    assert isinstance(result, float), "MSE should be a float."
+    assert result >= 0.0, "MSE cannot be negative."
+
