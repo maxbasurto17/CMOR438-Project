@@ -1,7 +1,7 @@
 import numpy as np
 
 class DecisionTree:
-    def __init__(self, max_depth=10):
+    def __init__(self, max_depth=10, max_features=None):
         """
         Initializes the Decision Tree classifier.
         
@@ -9,50 +9,72 @@ class DecisionTree:
         ----------
         max_depth : int, default=10
             The maximum depth of the tree to prevent overfitting.
+        max_features : int, optional
+            The number of random features to consider when looking for the best 
+            split. If None, all features are considered. This is primarily 
+            used by the RandomForest class.
         """
         self.max_depth = max_depth
+        self.max_features = max_features
         self.tree = None
 
     def _gini(self, y):
-        """Computes the Gini Impurity of a label set."""
+        """
+        Computes the Gini Impurity of a set of labels.
+        
+        Gini impurity is a measure of how often a randomly chosen element from 
+        the set would be incorrectly labeled if it was randomly labeled 
+        according to the distribution of labels in the subset.
+        """
         m = len(y)
-        if m == 0: return 0
+        if m == 0:
+            return 0
         return 1.0 - sum((np.sum(y == c) / m) ** 2 for c in np.unique(y))
 
-    def _best_split(self, X, y):
+    def _best_split(self, X, y, max_features):
         """
-        Iterates over features and thresholds to find the best Gini-based split.
+        Finds the best feature and threshold to split the data.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Input features.
+            The input feature matrix.
         y : ndarray of shape (n_samples,)
-            Target labels.
+            The target labels.
+        max_features : int or None
+            The number of random features to evaluate for the split.
 
         Returns
         -------
         best_idx : int or None
-            Feature index of the optimal split.
+            The index of the feature used for the best split.
         best_thr : float or None
-            Threshold value for the optimal split.
+            The threshold value used for the best split.
         """
         m, n = X.shape
-        if m <= 1: return None, None
+        if m <= 1:
+            return None, None
         
         best_gini = self._gini(y)
         best_idx, best_thr = None, None
         
-        for idx in range(n):
+        # --- FEATURE SUBSAMPLING ---
+        # Select a random subset of feature indices if max_features is specified
+        if max_features is not None and max_features < n:
+            feature_indices = np.random.choice(n, max_features, replace=False)
+        else:
+            feature_indices = range(n)
+        
+        for idx in feature_indices:
             thresholds = np.unique(X[:, idx])
             for thr in thresholds:
                 left_indices = X[:, idx] <= thr
-                y_left = y[left_indices]
-                y_right = y[~left_indices]
+                y_left, y_right = y[left_indices], y[~left_indices]
                 
                 if len(y_left) == 0 or len(y_right) == 0:
                     continue
                 
+                # Weighted average of Gini Impurity for the children nodes
                 gini = (len(y_left) * self._gini(y_left) + 
                         len(y_right) * self._gini(y_right)) / m
                 
@@ -65,19 +87,27 @@ class DecisionTree:
 
     def _build_tree(self, X, y, depth=0):
         """
-        Recursively builds the decision tree nodes until depth or purity is reached.
+        Recursive function to build the tree nodes.
+        
+        At each node, we determine the most frequent class and decide whether
+        to split further based on depth and purity.
         """
         unique_classes = np.unique(y)
+        # Calculate the distribution to determine the majority class
         num_samples_per_class = [np.sum(y == i) for i in unique_classes]
+        
+        # Mapping index of max count back to the actual class label
         predicted_class = unique_classes[np.argmax(num_samples_per_class)]
         
         node = {"class": predicted_class}
 
+        # Stop if the node is pure (only one class remains)
         if len(unique_classes) == 1:
             return node
 
+        # Recursive split if max depth hasn't been reached
         if depth < self.max_depth:
-            idx, thr = self._best_split(X, y)
+            idx, thr = self._best_split(X, y, self.max_features)
             if idx is not None:
                 indices_left = X[:, idx] <= thr
                 node["feature_index"] = idx
@@ -88,7 +118,7 @@ class DecisionTree:
 
     def train(self, X, y):
         """
-        Fits the Decision Tree to the classification data.
+        Builds the decision tree from the training data.
 
         Parameters
         ----------
@@ -100,14 +130,16 @@ class DecisionTree:
         Returns
         -------
         self : object
+            Returns the instance itself.
         """
         self.tree = self._build_tree(X, y)
         return self
 
     def _predict_one(self, inputs, node):
-        """Traverses the internal dictionary to find the leaf class for one sample."""
+        """Traverse the tree recursively for a single input sample."""
         if "feature_index" not in node:
             return node["class"]
+        
         if inputs[node["feature_index"]] <= node["threshold"]:
             return self._predict_one(inputs, node["left"])
         else:
@@ -115,7 +147,7 @@ class DecisionTree:
 
     def predict(self, X):
         """
-        Predicts class labels for the provided samples.
+        Predicts class labels for a set of samples.
 
         Parameters
         ----------
@@ -123,7 +155,7 @@ class DecisionTree:
             The input samples.
 
         Returns
--------
+        -------
         predictions : ndarray of shape (n_samples,)
             The predicted class labels.
         """
