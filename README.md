@@ -22,15 +22,44 @@ This project includes examples of the core functions being tested on NFL player 
 │   └── rice_ml/
 │       ├── __init__.py
 │       ├── measures/
-│       │   └── __init__.py
+│       │   ├── __init__.py
+│       │   ├── distances.py
+│       │   └── validation.py
 │       ├── preprocessing/
-│       │   └── __init__.py
-│       ├── supervised_ml/
-│       │   └── __init__.py
-│       └── unsupervised_ml/
-│           └── __init__.py
+│       │   ├── __init__.py
+│       │   ├── one_hot_encoder.py
+│       │   └── standard_scaler.py
+│       ├── supervised/
+│       │   ├── __init__.py
+│       │   ├── decision_tree.py
+│       │   ├── gradient_boosting.py
+│       │   ├── k_nearest_neighbors.py
+│       │   ├── linear_regression.py
+│       │   ├── logistic_regression.py
+│       │   ├── multi_layer_perceptron.py
+│       │   ├── perceptron.py
+│       │   ├── random_forest.py
+│       │   └── regression_tree.py
+│       └── unsupervised/
+│           ├── __init__.py
+│           ├── dbscan.py
+│           ├── kmeans.py
+│           └── pca.py
 └── tests/
-    └── test_basic.py
+    ├── test_basic.py
+    ├── test_dbscan.py
+    ├── test_decision_tree.py
+    ├── test_distances.py
+    ├── test_gradient_boosting.py
+    ├── test_k_nearest_neighbors.py
+    ├── test_linear_regression.py
+    ├── test_logistic_regression.py
+    ├── test_multi_layer_perceptron.py
+    ├── test_one_hot_encoder.py
+    ├── test_pca.py
+    ├── test_perceptron.py
+    ├── test_random_forest.py
+    └── test_kmeans.py
 ```
 
 ## Capabilities
