@@ -4,3 +4,4 @@ from .supervised.logistic_regression import LogisticRegression
 from .supervised.decision_tree import DecisionTree
 from .supervised.regression_tree import RegressionTree
 from .supervised.random_forest import RandomForest
+from .supervised.gradient_boosting import GradientBoostingRegressor
