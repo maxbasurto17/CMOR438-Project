@@ -8,3 +8,4 @@ from .supervised.regression_tree import RegressionTree
 from .supervised.random_forest import RandomForest
 from .supervised.gradient_boosting import GradientBoostingRegressor
 from .unsupervised.pca import PCA
+from .unsupervised.dbscan import DBSCAN
