@@ -52,7 +52,7 @@ def test_forward_pass_and_predict():
     # --- Test Forward Pass Shapes ---
     Z, A = net._forward_pass(xi)
     
-    assert Z[0] == [[0.0]], "Z[0] should be initialized to [[0.0]]."
+    assert Z[0] == [0.0], "Z[0] should be initialized to [0.0]."
     assert A[0].shape == (3, 1), f"A[0] should be input shape (3, 1), got {A[0].shape}"
     
     for i in range(1, len(layers)):
