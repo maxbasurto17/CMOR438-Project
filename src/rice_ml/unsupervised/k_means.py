@@ -1,5 +1,5 @@
 import numpy as np
-from rice_ml.measures.validation import euclidean_distance
+from rice_ml.measures.distances import euclidean_distance
 
 class KMeans:
     """
