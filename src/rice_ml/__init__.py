@@ -11,3 +11,4 @@ from .unsupervised.pca import PCA
 from .unsupervised.dbscan import DBSCAN
 from .preprocessing.standard_scaler import StandardScaler
 from .preprocessing.one_hot_encoder import OneHotEncoder
+from .unsupervised.k_means import KMeans
