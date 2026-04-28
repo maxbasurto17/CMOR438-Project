@@ -58,7 +58,7 @@ class DecisionTree:
         best_gini = self._gini(y)
         best_idx, best_thr = None, None
         
-        # --- FEATURE SUBSAMPLING ---
+        # Feature Subsampling
         # Select a random subset of feature indices if max_features is specified
         if max_features is not None and max_features < n:
             feature_indices = np.random.choice(n, max_features, replace=False)

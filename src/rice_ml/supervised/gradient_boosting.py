@@ -44,23 +44,23 @@ class GradientBoostingRegressor:
         """
         self.trees = []
         
-        # 1. Start with an initial constant prediction (the mean of y)
+        # Start with an initial constant prediction (the mean of y)
         self.initial_prediction = np.mean(y)
         current_predictions = np.full(len(y), self.initial_prediction)
 
         for _ in range(self.n_estimators):
-            # 2. Calculate the "residuals" (the errors)
+            # Calculate residuals
             # In regression with MSE loss, the gradient is just (y - y_hat)
             residuals = y - current_predictions
 
-            # 3. Fit a regression tree to the residuals
+            # Fit a regression tree to the residuals
             tree = RegressionTree(
                 max_depth=self.max_depth, 
                 min_samples_split=self.min_samples_split
             )
             tree.train(X, residuals)
             
-            # 4. Update current predictions
+            # Update current predictions
             # We add a small fraction (learning_rate) of the new tree's output
             predictions_from_tree = tree.predict(X)
             current_predictions += self.learning_rate * predictions_from_tree

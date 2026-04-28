@@ -6,11 +6,11 @@ class TestRegressionTree(unittest.TestCase):
     def setUp(self):
         """Prepare datasets for various regression scenarios."""
         np.random.seed(42)
-        # 1. Step Function (The bread and butter of trees)
+        # Step Function (The bread and butter of trees)
         self.X_step = np.arange(0, 10).reshape(-1, 1)
         self.y_step = np.array([0, 0, 0, 0, 0, 10, 10, 10, 10, 10])
 
-        # 2. Multi-feature data with an irrelevant column
+        # Multi-feature data with an irrelevant column
         # y only depends on column 0
         self.X_multi = np.array([
             [1, 500], [2, -100], [8, 1000], [9, 0]

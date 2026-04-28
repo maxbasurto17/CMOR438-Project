@@ -73,10 +73,10 @@ class RandomForest:
             self.max_features = int(np.sqrt(n_features))
 
         for _ in range(self.n_estimators):
-            # 1. Create bootstrap sample (Bagging)
+            # Create bootstrap sample (Bagging)
             X_sample, y_sample = self._bootstrap_sample(X, y)
             
-            # 2. Create and train a tree with feature subsampling
+            # Create and train a tree with feature subsampling
             tree = DecisionTree(
                 max_depth=self.max_depth, 
                 max_features=self.max_features

@@ -31,24 +31,24 @@ class PCA:
         -------
         self : object
         """
-        # 1. Center the data (Zero-mean)
+        # Center the data (Zero-mean)
         self.mean = np.mean(X, axis=0)
         X_centered = X - self.mean
 
-        # 2. Compute the Covariance Matrix
+        # Compute the Covariance Matrix
         # rowvar=False because columns are features
         cov_matrix = np.cov(X_centered, rowvar=False)
 
-        # 3. Calculate Eigenvalues and Eigenvectors
+        # Calculate Eigenvalues and Eigenvectors
         eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
 
-        # 4. Sort eigenvectors by eigenvalues in descending order
+        # Sort eigenvectors by eigenvalues in descending order
         # eigh returns them in ascending order, so we reverse them
         idxs = np.argsort(eigenvalues)[::-1]
         eigenvalues = eigenvalues[idxs]
         eigenvectors = eigenvectors[:, idxs]
 
-        # 5. Store the top n_components
+        # Store the top n_components
         self.components = eigenvectors[:, :self.n_components]
         self.explained_variance = eigenvalues[:self.n_components]
         

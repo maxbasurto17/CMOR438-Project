@@ -5,11 +5,11 @@ from rice_ml.supervised import DecisionTree
 class TestDecisionTree(unittest.TestCase):
     def setUp(self):
         """Prepare datasets for various testing scenarios."""
-        # 1. XOR-like dataset (Tests if the tree can handle non-linear splits)
+        # XOR-like dataset (Tests if the tree can handle non-linear splits)
         self.X_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
         self.y_xor = np.array([0, 1, 1, 0])
 
-        # 2. Redundant Feature dataset (Tests if tree ignores useless features)
+        # Redundant Feature dataset (Tests if tree ignores useless features)
         self.X_red = np.array([[1, 100], [1, 200], [0, 5], [0, -10]])
         self.y_red = np.array([1, 1, 0, 0]) # Only column 0 matters
 

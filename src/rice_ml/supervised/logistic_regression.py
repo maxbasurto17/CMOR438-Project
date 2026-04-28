@@ -1,4 +1,5 @@
 import numpy as np
+from rice_ml.measures.validation import *
 
 class LogisticRegression:
     def __init__(self, eta=0.01, epochs=1000):
@@ -14,12 +15,6 @@ class LogisticRegression:
         self.weights = None
         self.bias = None
         self.losses = []  # Tracks the loss over time for plotting/debugging
-
-    def _sigmoid(self, z):
-        """Private helper method to compute the sigmoid function."""
-        # Clipping z prevents math overflow errors if numbers get too large/small
-        z = np.clip(z, -250, 250)
-        return 1 / (1 + np.exp(-z))
 
     def train(self, X, y):
         """
@@ -37,19 +32,19 @@ class LogisticRegression:
 
         # Gradient Descent loop
         for _ in range(self.epochs):
-            # 1. Calculate predictions (Forward pass)
+            # Calculate predictions (Forward pass)
             linear_model = np.dot(X, self.weights) + self.bias
-            y_predicted = self._sigmoid(linear_model)
+            y_predicted = sigmoid(linear_model)
 
-            # 2. Compute gradients
+            # Compute gradients
             dw = (1 / n_samples) * np.dot(X.T, (y_predicted - y))
             db = (1 / n_samples) * np.sum(y_predicted - y)
 
-            # 3. Update parameters
+            # Update parameters
             self.weights -= self.eta * dw
             self.bias -= self.eta * db
 
-            # Optional: Calculate Binary Cross-Entropy Loss to track performance
+            # Calculate Binary Cross-Entropy Loss to track performance
             # Epsilon prevents log(0) errors
             epsilon = 1e-9
             y_pred_safe = np.clip(y_predicted, epsilon, 1 - epsilon)
@@ -59,7 +54,7 @@ class LogisticRegression:
     def predict_proba(self, X):
         """Returns the probability that the samples belong to class 1."""
         linear_model = np.dot(X, self.weights) + self.bias
-        return self._sigmoid(linear_model)
+        return sigmoid(linear_model)
 
     def predict(self, X):
         """
