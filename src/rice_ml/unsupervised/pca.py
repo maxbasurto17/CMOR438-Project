@@ -17,6 +17,7 @@ class PCA:
         self.components = None
         self.mean = None
         self.explained_variance = None
+        self.explained_variance_ratio = None  # New attribute
 
     def train(self, X):
         """
@@ -28,7 +29,7 @@ class PCA:
             Training data.
 
         Returns
-        -------
+-------
         self : object
         """
         # Center the data (Zero-mean)
@@ -43,14 +44,19 @@ class PCA:
         eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
 
         # Sort eigenvectors by eigenvalues in descending order
-        # eigh returns them in ascending order, so we reverse them
         idxs = np.argsort(eigenvalues)[::-1]
         eigenvalues = eigenvalues[idxs]
         eigenvectors = eigenvectors[:, idxs]
 
+        # NEW: Calculate the ratio before slicing eigenvalues
+        total_variance = np.sum(eigenvalues)
+        
         # Store the top n_components
         self.components = eigenvectors[:, :self.n_components]
         self.explained_variance = eigenvalues[:self.n_components]
+        
+        # NEW: Calculate and store the ratio
+        self.explained_variance_ratio = self.explained_variance / total_variance
         
         return self
 
