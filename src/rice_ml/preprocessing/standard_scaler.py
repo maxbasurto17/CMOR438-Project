@@ -6,7 +6,8 @@ class StandardScaler:
         Standardize features by removing the mean and scaling to unit variance.
         
         The standard score of a sample `x` is calculated as:
-        $$z = \frac{x - u}{s}$$
+     from .standard_scaler import StandardScaler
+from .one_hot_encoder import OneHotEncoder   $$z = \frac{x - u}{s}$$
         where `u` is the mean and `s` is the standard deviation.
         """
         self.mean_ = None
