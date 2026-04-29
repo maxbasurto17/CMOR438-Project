@@ -1,12 +1,11 @@
-# CMOR 438 Final Project
+# Football Skill Position Analysis
+## CMOR 438 Final Project
 
 ## Overview
 
-This project stores a custom-built machine learning package developed for my **CMOR 438 (Data Science and Machine Learning)** final project. The package focuses on the basics of supervised and unsupervised learning.
+This repository houses a custom-built machine learning package developed for the **CMOR 438 (Data Science and Machine Learning)** final project. By building supervised and unsupervised learning algorithms from scratch, the core principles of ML become more accessible.
 
-By implementing a custom package, the core principles of ML become more accessible and understandable than the standard implementation of the functions.
-
-This project includes examples of the core functions being tested on NFL player stats data.
+We've leveraged the package to analyze NFL skill position players (Running Backs, Wide Receivers, and Tight Ends). Ultimately, the project aims to identify the specific traits that drive player production and define the unique roles each position plays within an offense.
 
 ## Structure
 
@@ -43,7 +42,7 @@ This project includes examples of the core functions being tested on NFL player 
 │       └── unsupervised/
 │           ├── __init__.py
 │           ├── dbscan.py
-│           ├── kmeans.py
+│           ├── k_means.py
 │           └── pca.py
 └── tests/
     ├── test_basic.py
@@ -64,16 +63,39 @@ This project includes examples of the core functions being tested on NFL player 
 
 ## Capabilities
 
+As defined above, this package can be used to perform standard data preprocessing, implement supervised and unsupervised machine learning methods, and measure the effectiveness of the implemented models. This creates a comprhensive ML package built for end-to-end data analysis.
 
-## Usages
-### Examples
+**Supervised Learning**
+* Linear & Logistic Regression: Baseline statistical models for predicting continuous values (Linear) and binary classifications (Logistic).
+* Perceptron & MLP: Neural networks ranging implemting both a single-layer linear classifier (Perceptron) and a Multi-Layer Perceptron (MLP) for complex patterns.
+* Decision & Regression Trees: Non-linear models that split data based on feature thresholds for both classification (Decision) and regression tasks.
+* Random Forest & Gradient Boosting: Ensemble methods that combine multiple trees to reduce variance (Bagging) or bias (Boosting).
+* K-Nearest Neighbors (KNN): An instance-based learner that classifies points based on the majority vote of their closest neighbors.
 
-### Testing
+**Unsupervised Learning**
+* Principal Component Analysis (PCA): A dimensionality reduction technique that projects data onto axes of maximum variance.
+* K-Means Clustering: A centroid-based algorithm that partitions data into $K$ distinct, non-overlapping subgroups.
+* DBSCAN: A density-based clustering method capable of finding arbitrary shapes and identifying outliers as noise.
+
+**Measures & Metrics**
+* Distances: Euclidean distance.
+* Validation: Tools for model assessment, including performance metrics like root mean squared error, mean absolute error, and $R^2$.
+
+**Preprocessing** 
+* StandardScaler: Features scaling centering all variables at a mean of 0 with a standard deviation of 1.
+* One-Hot Encoder: Converts a categorical string data into a binary numeric format suitable for machine learning.
 
 
-### Installation
+## Installation
 
+To install the package directly to your device, use the following code in your terminal:
 
-## Author & Liscense
-**Author:** Max Basurto
+```bash
+pip install git+[https://github.com/maxbasurto17/CMOR438-Project.git](https://github.com/maxbasurto17/CMOR438-Project.git)
+```
+
+## Authors & Liscense
+
+**Authors:** Suhas Narra, Max Basurto
+
 **License:** Project licensed under MIT License.
