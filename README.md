@@ -95,5 +95,7 @@ pip install git+[https://github.com/maxbasurto17/CMOR438-Project.git](https://gi
 ```
 
 ## Authors & Liscense
+
 **Authors:** Suhas Narra, Max Basurto
+
 **License:** Project licensed under MIT License.
