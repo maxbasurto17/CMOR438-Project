@@ -260,3 +260,4 @@ def calculate_total_mse(W, B, X, y):
         cost += mean_squared_error(yi, A[-1])
         
     return cost / m if m > 0 else 0.0
+
