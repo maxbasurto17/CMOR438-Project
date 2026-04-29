@@ -70,6 +70,9 @@ class MultiLayerPerceptron(object):
             A tuple containing the pre-activation lists (Z) and 
             post-activation lists (A) for each layer.
         """
+        # Ensure xi is a column vector
+        xi = np.array(xi).reshape(-1, 1)
+
         Z = [[0.0]]
         A = [xi]
         L = len(self.W) - 1
