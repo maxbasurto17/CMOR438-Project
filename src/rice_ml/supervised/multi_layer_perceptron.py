@@ -71,10 +71,10 @@ class MultiLayerPerceptron(object):
             post-activation lists (A) for each layer.
         """
         # Ensure xi is a column vector
-        xi = np.array(xi).reshape(-1, 1)
+        xi_col = np.array(xi).reshape(-1, 1)
 
         Z = [[0.0]]
-        A = [xi]
+        A = [xi_col]
         L = len(self.W) - 1
         
         for i in range(1, L + 1):
