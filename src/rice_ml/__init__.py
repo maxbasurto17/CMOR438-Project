@@ -13,4 +13,4 @@ from .preprocessing.standard_scaler import StandardScaler
 from .preprocessing.one_hot_encoder import OneHotEncoder
 from .unsupervised.k_means import KMeans
 from .measures.distances import euclidean_distance
-from .measures.validation import accuracy_score, precision_score, recall_score, f1_score
+from .measures.validation import *
