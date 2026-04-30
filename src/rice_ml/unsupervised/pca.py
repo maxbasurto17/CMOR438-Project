@@ -17,7 +17,7 @@ class PCA:
         self.components = None
         self.mean = None
         self.explained_variance = None
-        self.explained_variance_ratio = None  # New attribute
+        self.explained_variance_ratio = None 
 
     def train(self, X):
         """
@@ -48,14 +48,14 @@ class PCA:
         eigenvalues = eigenvalues[idxs]
         eigenvectors = eigenvectors[:, idxs]
 
-        # NEW: Calculate the ratio before slicing eigenvalues
+        # Calculate the ratio before slicing eigenvalues
         total_variance = np.sum(eigenvalues)
         
         # Store the top n_components
         self.components = eigenvectors[:, :self.n_components]
         self.explained_variance = eigenvalues[:self.n_components]
         
-        # NEW: Calculate and store the ratio
+        # Calculate and store the ratio
         self.explained_variance_ratio = self.explained_variance / total_variance
         
         return self
