@@ -1,4 +1,4 @@
-# Football Skill Position Analysis
+# Custom Machine Learning Package & Football Skill Position Analysis
 ## CMOR 438 Final Project
 
 ## Overview
@@ -84,6 +84,12 @@ As defined above, this package can be used to perform standard data preprocessin
 **Preprocessing** 
 * StandardScaler: Features scaling centering all variables at a mean of 0 with a standard deviation of 1.
 * One-Hot Encoder: Converts a categorical string data into a binary numeric format suitable for machine learning.
+
+## Package Usage
+
+In this repository, we leverage our package to conduct analysis on NFL skill position (RB, WR, TE) players. We look at a variety of angles such as player evaluation, NFL Draft projections, and play style identification. Below is how we leverage each model in this repository.
+
+**INSERT EXAMPLES BREAKDOWN ONCE WE HAVE SUBFOLDERS IN THE EXAMPLES SECTION**
 
 
 ## Installation
