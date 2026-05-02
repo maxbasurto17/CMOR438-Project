@@ -110,7 +110,7 @@ In this repository, we leverage our package to conduct analysis on NFL skill pos
 To install the package directly to your device, use the following code in your terminal:
 
 ```bash
-pip install git+[https://github.com/maxbasurto17/CMOR438-Project.git](https://github.com/maxbasurto17/CMOR438-Project.git)
+pip install git+https://github.com/maxbasurto17/CMOR438-Project.git
 ```
 
 ## Authors & Liscense
