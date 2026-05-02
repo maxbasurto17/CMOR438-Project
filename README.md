@@ -45,7 +45,6 @@ We've leveraged the package to analyze NFL skill position players (Running Backs
 │           ├── k_means.py
 │           └── pca.py
 └── tests/
-    ├── test_basic.py
     ├── test_dbscan.py
     ├── test_decision_tree.py
     ├── test_distances.py
@@ -63,7 +62,7 @@ We've leveraged the package to analyze NFL skill position players (Running Backs
 
 ## Capabilities
 
-As defined above, this package can be used to perform standard data preprocessing, implement supervised and unsupervised machine learning methods, and measure the effectiveness of the implemented models. This creates a comprhensive ML package built for end-to-end data analysis.
+As defined above, this package can be used to perform standard data preprocessing, implement supervised and unsupervised machine learning methods, and measure the effectiveness of the implemented models. This creates a comprehensive ML package built for end-to-end data analysis.
 
 **Supervised Learning**
 * Linear & Logistic Regression: Baseline statistical models for predicting continuous values (Linear) and binary classifications (Logistic).
@@ -101,7 +100,7 @@ In this repository, we leverage our package to conduct analysis on NFL skill pos
 * K-Nearest Neighbors (KNN): Utilizing player heights and weights to identify player positions. 
 
 **Unsupervised Learning**
-* Principal Component Analysis (PCA): Leveraged in multiple examples. Used in K-Means to compare model effectiveness between using, and not using, PCA in data prep for a model.
+* Principal Component Analysis (PCA): Leveraged in multiple examples. Used in K-Means to compare model effectiveness between using and not using PCA in data prep for a model.
 * K-Means Clustering: Identifying wide receiver archetypes using wide receiver bio and production data.
 * DBSCAN: Classifying running back profiles using heights and weights.
 
