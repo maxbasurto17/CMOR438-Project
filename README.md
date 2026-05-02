@@ -7,7 +7,7 @@ This repository houses a custom-built machine learning package developed for the
 
 We've leveraged the package to analyze NFL skill position players (Running Backs, Wide Receivers, and Tight Ends). Ultimately, the project aims to identify the specific traits that drive player production and define the unique roles each position plays within an offense.
 
-## Structure
+## Package Structure
 
 ```text
 .
@@ -89,7 +89,21 @@ As defined above, this package can be used to perform standard data preprocessin
 
 In this repository, we leverage our package to conduct analysis on NFL skill position (RB, WR, TE) players. We look at a variety of angles such as player evaluation, NFL Draft projections, and play style identification. Below is how we leverage each model in this repository.
 
-**INSERT EXAMPLES BREAKDOWN ONCE WE HAVE SUBFOLDERS IN THE EXAMPLES SECTION**
+**Supervised Learning**
+* Linear Regression: Predict wide receiver catch totals based on their type of usage.
+* Logistic Regression: Predicting touchdown probability on a play based on play context.
+* Perceptron: Using pass game usage to distinguish running backs and wide receivers.
+* MLP: Predicting playoff and non-playoff teams using platoon strength.
+* Decision Tree: Leveraging wide receiver NFL career data to predict what round they were drafted in.
+* Regression Trees: Utilizing in-game athleticism data to predict yards per carry.
+* Random Forest: Expanding on example from decision tree example. 
+* Gradient Boosting: Understanding how impactful skill is in determining tight end production.
+* K-Nearest Neighbors (KNN): Utilizing player heights and weights to identify player positions. 
+
+**Unsupervised Learning**
+* Principal Component Analysis (PCA): Leveraged in multiple examples. Used in K-Means to compare model effectiveness between using, and not using, PCA in data prep for a model.
+* K-Means Clustering: Identifying wide receiver archetypes using wide receiver bio and production data.
+* DBSCAN: Classifying running back profiles using heights and weights.
 
 
 ## Installation
