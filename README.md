@@ -104,6 +104,15 @@ In this repository, we leverage our package to conduct analysis on NFL skill pos
 * K-Means Clustering: Identifying wide receiver archetypes using wide receiver bio and production data.
 * DBSCAN: Classifying running back profiles using heights and weights.
 
+## Data
+* NFL Receiving Stats: Aggregated NFL Receiving stats from 2025-2026 season. Downloaded from Pro Football Focus (PFF)
+* College RB Athleticism: College RB athleticism percentiles and information. Downloaded from PFF
+* College RB Stats: Aggregated College RB Rushing Statistics from 2025-2026 season. Downloaded from PFF
+* Tight End Data: NFL Tight End Receiving Statistics from 2025-2026 season. Downloaded from PFF
+* NFL PBP: NFL play-by-play data. Downloaded from NFLFastR R package
+* NFL Players: Biodata on all NFL Players from 2000-2026 seasons. Downloaded from NFLReadr package
+* NFL Playoffs: Season-long Epa/play by unit + Playoffs (T/F) for all NFL teams from 2015-2025 seasons. Aggregated from NFLReadr schedules and play-by-play datasets
+* NFL Draft: NFL Draft picks, Biodata, NFL Career Statistics from 1980-2025 seasons. Downloaded from NFLReadr package   
 
 ## Installation
 
